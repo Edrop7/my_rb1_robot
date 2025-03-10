@@ -6,15 +6,15 @@
     <gazebo reference="base_link">
         <material>Gazebo/Orange</material>
     </gazebo>
-    <gazebo reference="front_caster">
-        <material>Gazebo/Black</material>
-    </gazebo>
-    <gazebo reference="back_caster">
-        <material>Gazebo/Black</material>
+    
+    <!-- Gazebo - laser -->
+    <gazebo reference="joint_front_laser_base_link">
+        <preserveFixedJoint>true</preserveFixedJoint>
     </gazebo>
     <gazebo reference="front_laser">
         <material>Gazebo/Black</material>
     </gazebo>
+
     <!-- Gazebo - wheels -->
     <gazebo reference="right_wheel">
         <material>Gazebo/Black</material>
@@ -25,6 +25,20 @@
         <material>Gazebo/Black</material>
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
+    </gazebo>
+
+    <!-- Gazebo - casters -->
+    <gazebo reference="joint_front_caster_base_footprint">
+        <preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
+    <gazebo reference="front_caster">
+        <material>Gazebo/Black</material>
+    </gazebo>
+    <gazebo reference="joint_back_caster_base_footprint">
+        <preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
+    <gazebo reference="back_caster">
+        <material>Gazebo/Black</material>
     </gazebo>
 
 
