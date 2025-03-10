@@ -18,8 +18,8 @@
     <param name="robot_description" command="cat '$(find my_rb1_description)/urdf/my_rb1_robot.urdf'" />
     
     <arg name="model_name" default="my_robot"/>
-    <arg name="x" default="0"/>
-    <arg name="y" default="0"/>
+    <arg name="x" default="-0.45"/>
+    <arg name="y" default="-1.325"/>
     <arg name="z" default="0.5"/>
     
     <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
