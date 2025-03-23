@@ -12,6 +12,7 @@ class MoveRB1():
     def __init__(self):
         self.rb1_vel_publisher = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
         self._service = rospy.Service('/rotate_robot', Rotate , self.callback)
+        rospy.loginfo(f"Service Ready: /rotate_robot")
         self.cmd = Twist()
         self.ctrl_c = False
         self.rate = rospy.Rate(10) # 10hz
@@ -21,7 +22,8 @@ class MoveRB1():
         rospy.on_shutdown(self.shutdownhook)
     
     def callback(self, request):
-        rospy.loginfo(f"Robot rotation requested for {request.degrees}")
+        rospy.loginfo(f"Service Requested: {request.degrees} degrees")
+        # rospy.loginfo(f"Robot rotation requested for {request.degrees}")
         
         self.z_angular_cache_degrees = self.z_angular_pos_degrees
         target = self.z_angular_cache_degrees + request.degrees
@@ -39,7 +41,8 @@ class MoveRB1():
                 self.rate.sleep()
             self.stop_rb1()
 
-        rospy.loginfo(f"End position is: {self.z_angular_pos_degrees}")
+        # rospy.loginfo(f"End position is: {self.z_angular_pos_degrees}")
+        rospy.loginfo(f"Service Completed: {self.z_angular_pos_degrees} result vs {target} target")
 
         response = RotateResponse()
         response.result = (f"requested {request.degrees} rotation achieved")
