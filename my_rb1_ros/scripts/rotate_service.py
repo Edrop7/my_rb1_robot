@@ -15,7 +15,7 @@ class MoveRB1():
         rospy.loginfo(f"Service Ready: /rotate_robot")
         self.cmd = Twist()
         self.ctrl_c = False
-        self.rate = rospy.Rate(10) # 10hz
+        self.rate = rospy.Rate(20) # 20hz
         self.odom_sub = rospy.Subscriber('/odom', Odometry, self.odom_callback)
         self.z_angular_pos_degrees = float(0)
         self.z_angular_cache_degrees = float(0)
@@ -31,12 +31,12 @@ class MoveRB1():
         rospy.loginfo(f"Start: {self.z_angular_cache_degrees}, target: {target}")
 
         if request.degrees < 1:
-            self.rotate_rb1(angular_speed=-0.2)
+            self.rotate_rb1(angular_speed=-1.047197) #pi/3 rad/s
             while self.z_angular_pos_degrees > target:
                 self.rate.sleep()
             self.stop_rb1()
         else:
-            self.rotate_rb1(angular_speed=0.2)
+            self.rotate_rb1(angular_speed=1.047197) #pi/3 rad/s
             while self.z_angular_pos_degrees < target:
                 self.rate.sleep()
             self.stop_rb1()
